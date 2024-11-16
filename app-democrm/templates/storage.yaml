@@ -6,5 +6,5 @@ provisioner: ebs.csi.aws.com
 parameters:
   type: gp2 # Volume type (gp2, io1, st1, sc1)
   fsType: ext4 # Filesystem type for the volume
-reclaimPolicy: Retain # Policy to keep or delete PV after PVC deletion
+reclaimPolicy: Delete # Policy to keep or delete PV after PVC deletion
 volumeBindingMode: WaitForFirstConsumer
