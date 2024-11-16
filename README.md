@@ -1,2 +1,0 @@
-# demo-crm
-demo-crm
