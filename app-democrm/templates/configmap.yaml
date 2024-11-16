@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongo-config
+data:
+  databasePort: "27017"
+  databaseHost: "{{ .Release.Name }}-mongodb"
+  MONGODB_URI: "mongodb://root:root-password@{{ .Release.Name }}-mongodb:27017"
+  LOG_LEVEL: "info"
+  PERSISTENCE: "true"

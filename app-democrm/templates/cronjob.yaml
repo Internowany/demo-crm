@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mongodb-cleanup
+spec:
+  schedule: "0 0 * * *"
+  concurrencyPolicy: Replace
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: clean-up
+              image: docker.io/bitnami/mongodb:8.0.3-debian-12-r0
+              imagePullPolicy: IfNotPresent
+              command:
+                - /bin/sh
+                - -c
+                - mongosh --host {{ .Release.Name }}-mongodb -u root -p root-password --eval "db.clients.drop()"
+          restartPolicy: OnFailure
