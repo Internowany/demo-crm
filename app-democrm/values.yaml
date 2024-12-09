@@ -13,9 +13,6 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: "1.0.4"
 
-containterPort: 3000
-configName: "mongo-config"
-
 # This is for the secretes for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
 imagePullSecrets: []
 # This is to override the chart name.
@@ -133,21 +130,3 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-
-mongodb:
-  architecture: standalone # Set to replicaset if you need high availability
-  auth:
-    enabled: true
-    rootPassword: "root-password" # Root password
-  persistence:
-    enabled: true
-    size: 2Gi
-    storageClass: "mongo-sc1" # Specify your storage class, or leave empty to use the default
-  # Optional settings for resource limits and requests
-  resources:
-    limits:
-      memory: 512Mi
-      cpu: 500m
-    requests:
-      memory: 256Mi
-      cpu: 250m

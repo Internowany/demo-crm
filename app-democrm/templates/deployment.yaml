@@ -38,32 +38,6 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - containerPort: {{ .Values.service.targetPort }}
-          env:
-          - name: databasePort
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.configName }}
-                key: databasePort
-          - name: databaseHost
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.configName }}
-                key: databaseHost
-          - name: MONGODB_URI
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.configName }}
-                key: MONGODB_URI
-          - name: LOG_LEVEL
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.configName }}
-                key: LOG_LEVEL
-          - name: PERSISTENCE
-            valueFrom:
-              configMapKeyRef:
-                name: {{ .Values.configName }}
-                key: PERSISTENCE
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
