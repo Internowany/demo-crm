@@ -99,9 +99,6 @@ ingress:
                 name: demo-service
                 port:
                   number: 80
-    - host: demo-crm.internowany.click
-      http:
-        paths:
           - pathType: Prefix
             path: /cowsay
             backend:
@@ -114,8 +111,6 @@ ingress:
       paths:
         - path: /
           pathType: ImplementationSpecific
-    - host: demo-crm.internowany.click
-      paths:
         - path: /cowsay
           pathType: ImplementationSpecific
   tls:
