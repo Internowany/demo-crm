@@ -13,7 +13,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 imagecowsay:
-  repository: 017820661172.dkr.ecr.eu-central-1.amazonaws.com/seba/cowsay_project:1.0.4
+  repository: 017820661172.dkr.ecr.eu-central-1.amazonaws.com/seba/cowsay_project
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
