@@ -7,12 +7,6 @@ replicaCount: 2
 
 # This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
 image:
-  repository: pwstaging/demo-crm
-  # This sets the pull policy for images.
-  pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
-imagecowsay:
   repository: 017820661172.dkr.ecr.eu-central-1.amazonaws.com/seba/cowsay_project
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
@@ -67,15 +61,6 @@ service:
   name: demo-service
   # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
   port: 80
-  targetPort: 3000
-
-# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
-servicecowsay:
-  # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-  type: ClusterIP
-  name: cowsay-service
-  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
-  port: 80
   targetPort: 8082
 
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
@@ -99,19 +84,10 @@ ingress:
                 name: demo-service
                 port:
                   number: 80
-          - pathType: Prefix
-            path: /cowsay
-            backend:
-              service:
-                name: cowsay-service
-                port:
-                  number: 80
   hosts:
     - host: demo-crm.internowany.click
       paths:
         - path: /
-          pathType: ImplementationSpecific
-        - path: /cowsay
           pathType: ImplementationSpecific
   tls:
     - secretName: demo-app-tls
