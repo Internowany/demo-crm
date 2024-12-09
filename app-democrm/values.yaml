@@ -12,6 +12,13 @@ image:
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
+image-cowsay:
+  repository: 017820661172.dkr.ecr.eu-central-1.amazonaws.com/seba/cowsay_project:1.0.4
+  # This sets the pull policy for images.
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
 containterPort: 3000
 configName: "mongo-config"
 
@@ -62,6 +69,15 @@ service:
   port: 80
   targetPort: 3000
 
+# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
+service-cowsay:
+  # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+  type: ClusterIP
+  name: cowsay-service
+  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
+  port: 80
+  targetPort: 8082
+
 # This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
 ingress:
   enabled: true
@@ -83,10 +99,24 @@ ingress:
                 name: demo-service
                 port:
                   number: 80
+    - host: demo-crm.internowany.click
+      http:
+        paths:
+          - pathType: Prefix
+            path: /cowsay
+            backend:
+              service:
+                name: cowsay-service
+                port:
+                  number: 80
   hosts:
     - host: demo-crm.internowany.click
       paths:
         - path: /
+          pathType: ImplementationSpecific
+    - host: demo-crm.internowany.click
+      paths:
+        - path: /cowsay
           pathType: ImplementationSpecific
   tls:
     - secretName: demo-app-tls
