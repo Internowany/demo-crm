@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: cowsay-service
   labels:
-    {{- include "demo.labels" . | nindent 4 }}
+    app: cowsay
 spec:
   type: {{ .Values.servicecowsay.type }}
   ports:
@@ -11,4 +11,4 @@ spec:
       targetPort: {{ .Values.servicecowsay.targetPort }}
       protocol: TCP
   selector:
-    {{- include "demo.selectorLabels" . | nindent 4 }}
+    app: cowsay

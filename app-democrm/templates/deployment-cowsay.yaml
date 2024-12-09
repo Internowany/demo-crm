@@ -3,14 +3,14 @@ kind: Deployment
 metadata:
   name: cowsay
   labels:
-    {{- include "demo.labels" . | nindent 4 }}
+    app: cowsay
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
     matchLabels:
-      {{- include "demo.selectorLabels" . | nindent 6 }}
+      app: cowsay
   template:
     metadata:
       {{- with .Values.podAnnotations }}
@@ -18,7 +18,7 @@ spec:
         {{- toYaml . | nindent 8 }}
       {{- end }}
       labels:
-        {{- include "demo.labels" . | nindent 8 }}
+        app: cowsay
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
@@ -31,7 +31,7 @@ spec:
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
+        - name: cowsay
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.imagecowsay.repository }}:{{ .Values.imagecowsay.tag | default .Chart.AppVersion }}"
