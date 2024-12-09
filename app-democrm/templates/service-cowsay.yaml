@@ -5,10 +5,10 @@ metadata:
   labels:
     {{- include "demo.labels" . | nindent 4 }}
 spec:
-  type: {{ .Values.service-cowsay.type }}
+  type: {{ .Values.servicecowsay.type }}
   ports:
-    - port: {{ .Values.service-cowsay.port }}
-      targetPort: {{ .Values.service-cowsay.targetPort }}
+    - port: {{ .Values.servicecowsay.port }}
+      targetPort: {{ .Values.servicecowsay.targetPort }}
       protocol: TCP
   selector:
     {{- include "demo.selectorLabels" . | nindent 4 }}
