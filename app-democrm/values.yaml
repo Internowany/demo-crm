@@ -17,7 +17,7 @@ imagecowsay:
   # This sets the pull policy for images.
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: ""
+  tag: "1.0.4"
 
 containterPort: 3000
 configName: "mongo-config"
