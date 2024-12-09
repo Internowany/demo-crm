@@ -34,10 +34,10 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.image-cowsay.repository }}:{{ .Values.image-cowsay.tag | default .Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.image-cowsay.pullPolicy }}
+          image: "{{ .Values.imagecowsay.repository }}:{{ .Values.imagecowsay.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.imagecowsay.pullPolicy }}
           ports:
-            - containerPort: {{ .Values.service-cowsay.targetPort }}
+            - containerPort: {{ .Values.servicecowsay.targetPort }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           {{- with .Values.volumeMounts }}
